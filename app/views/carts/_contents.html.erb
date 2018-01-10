@@ -6,11 +6,11 @@
     <th>Subtotal</th>
     <th></th>
   <% @items.each do |item| %>
-  <tr>
+  <tr class = "cart-product-show">
     <td class="product-card-thumbnail">
       <%= link_to image_tag(asset_path(item.image)), item_path(item)  %>
     </td>
-    <td><h4><%= link_to "#{item.title}", item_path(item) %></h4><%= item.description %></td>
+    <td class="cart-item-description"><h4><%= link_to "#{item.title}", item_path(item) %></h4><%= item.description %></td>
     <td class="cart-item-price"><%= item.price_in_dollars %></td>
     <td class="cart-item-quantity">
       <%= form_for item, {method: :put, url: cart_path(item_id: item.id)} do |f| %>
@@ -33,9 +33,8 @@
     <td class="cart-item-total"><%= number_to_currency(cart_total_price/100) %></td>
   </tr>
 </table>
-
 <% if logged_in? %>
-  <%= link_to "Checkout", orders_path, :method => 'post' %>
+<%= link_to "Checkout", orders_path, :method => 'post' %>
 <% else %>
-  <%= link_to "Login or Create Account to Checkout", login_path %>
+<%= link_to "Login or Create Account to Checkout", login_path, class: "login-create" %>
 <% end %>
