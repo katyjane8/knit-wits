@@ -4,36 +4,24 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :logged_in?
   before_action :set_cart
-  helper_method :sort_methods
+  helper_method :item_sort
   helper_method :price_in_dollars
   helper_method :states_helper
-
-  before_action :set_cart
-
-  helper_method :sort_methods, :current_user, :current_admin?, :logged_in?
+  helper_method :current_admin?
 
 
-  def sort_methods
+  def item_sort
     [
+      ["Title, A-Z", "title ASC"],
+      ["Title, Z-A", "title DESC"],
       ["Price, Low to High", "price ASC"],
-      ["Price, High to Low", "price DESC"],
-      ["Alphabetically, A-Z", "title ASC"],
-      ["Alphabetically, Z-A", "title DESC"]
+      ["Price, High to Low", "price DESC"]
     ]
   end
 
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id] && User.exists?(id: session[:user_id])
-  end
-
-  def current_admin?
-    current_user && current_user.admin?
-  end
-
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def current_admin?
@@ -48,18 +36,15 @@ class ApplicationController < ActionController::Base
     User.states
   end
 
-
-
-
-
   def logged_in?
     !current_user.nil?
   end
 
-
-
-
     private
+
+    def require_logged_in
+      render file: "/public/404" unless logged_in?
+    end
 
     def set_cart
       @cart = Cart.new(session[:cart])

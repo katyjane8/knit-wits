@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_states
+  before_action :is_user, only: [:edit, :update]
 
   def new
     @user = User.new
+    @button_text = "Register"
   end
 
   def create
@@ -17,18 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    if logged_in?
-    else
-      render file: "/public/404"
-    end
   end
 
   def edit
-    if current_user.id == params[:id].to_i
-      @user = User.find(params[:id])
-    else
-      render file: "/public/404"
-    end
+    @user = User.find(params[:id])
+    @button_text = "Update my Account"
   end
 
   def update
@@ -41,6 +36,10 @@ private
 
   def user_params
     params.require(:user).permit(:username, :password, :street, :city, :state, :zipcode, :full_name)
+  end
+
+  def is_user
+    render file: "/public/404" if logged_in? && current_user.id != params[:id].to_i
   end
 
   def set_states

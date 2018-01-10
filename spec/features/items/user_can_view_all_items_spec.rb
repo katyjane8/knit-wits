@@ -39,4 +39,88 @@ describe "user can view all items" do
       end
     end
   end
+
+  describe "User can use sort dropdown" do
+    before(:each) do
+      create(:item, title: "A", price: 123)
+      create(:item, title: "M", price: 53)
+      create(:item, title: "X", price: 100)
+    end
+
+    it "is sorted by item title Alphabetically" do
+      visit items_path
+
+      select("Title, A-Z")
+      click_on "Sort"
+
+      within "#0" do
+        expect(page).to have_content("A")
+      end
+
+      within "#1" do
+        expect(page).to have_content("M")
+      end
+
+      within "#2" do
+        expect(page).to have_content("X")
+      end
+    end
+
+    it "is sorted by item title reverse Alphabetically" do
+      visit items_path
+
+      select("Title, Z-A")
+      click_on "Sort"
+
+      within "#0" do
+        expect(page).to have_content("X")
+      end
+
+      within "#1" do
+        expect(page).to have_content("M")
+      end
+
+      within "#2" do
+        expect(page).to have_content("A")
+      end
+    end
+
+    it "is sorted by item price high to low" do
+      visit items_path
+
+      select("Price, High to Low")
+      click_on "Sort"
+
+      within "#0" do
+        expect(page).to have_content("A")
+      end
+
+      within "#1" do
+        expect(page).to have_content("X")
+      end
+
+      within "#2" do
+        expect(page).to have_content("M")
+      end
+    end
+
+    it "is sorted by item price low to high" do
+      visit items_path
+
+      select("Price, Low to High")
+      click_on "Sort"
+
+      within "#0" do
+        expect(page).to have_content("M")
+      end
+
+      within "#1" do
+        expect(page).to have_content("X")
+      end
+
+      within "#2" do
+        expect(page).to have_content("A")
+      end
+    end
+  end
 end
