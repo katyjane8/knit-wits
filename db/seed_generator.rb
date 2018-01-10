@@ -2,7 +2,7 @@ require 'faker'
 require 'csv'
 
 class SeedGenerator
-  attr_reader :users_count, :orders_count
+  attr_reader :users_count, :orders_count, :order_items_count
 
   def initialize(users, orders, order_items)
     users.nil? ? @users_count = 30 : @users_count = users.to_i
