@@ -6,7 +6,8 @@ class SeedGenerator
 
   def initialize(users, orders, order_items)
     users.nil? ? @users_count = 30 : @users_count = users.to_i
-    orders.nil? ? @orders_count = 1000 : @orders_count = orders.to_i
+    orders.nil? ? @orders_count = 1000 : @orders_count = users.to_i
+    order_items.nil? ? @order_items_count = 4000 : @order_items_count = users.to_i
   end
 
   def users
@@ -35,16 +36,6 @@ class SeedGenerator
                  date]
     end
     orders
-  end
-
-  def choose_item(time)
-    if (time % 3) == 0
-      rand(1..6)
-    elsif (time % 3) == 1
-      rand(7..11)
-    else
-      rand(12..16)
-    end
   end
 
   def order_items
