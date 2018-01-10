@@ -41,9 +41,9 @@ class SeedGenerator
   def order_items
     order_items = []
     order_items << %w(item_id order_id quantity)
-    (orders_count * 3).times do |time|
-      order_items << [choose_item(time), #ensures duplicate items are not in order
-                      (time / 3), #builds 3 order items per order
+    order_items_count.times do
+      order_items << [rand(1..16), #items in database
+                      rand(1..orders_count), #number of orders
                       rand(1..5)] #max quantity of one item on order
     end
     order_items
