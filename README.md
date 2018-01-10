@@ -1,5 +1,13 @@
 # README
 
+
+
+Knit Wits is a Rails application that allows users to browse local Colorado handmade knits, add items to their cart, checkout, and view their orders. It also allows an administrator to view a variety of analytics about their users, items, and orders. It was built by Turing students [Max Stackhouse](https://github.com/Maxscores),  [Katy Welyzcko](https://github.com/katyjane8), and  [Zachary Landes](https://github.com/zacharylandes).
+
+Below are the user stories that were used to guide our development
+
+http://backend.turing.io/module2/projects/little_user_stories
+
 ## Basic Application Setup
 ### In Terminal:
 * `git clone https://github.com/katyjane8/knit-wits.git`
