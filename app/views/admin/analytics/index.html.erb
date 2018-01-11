@@ -18,8 +18,10 @@
         <% end %>
       </table>
     </div>
+  </div>
+  <div class="dashboard-info">
     <div class="dashboard-info-box">
-      <table>
+      <table class="category-table">
         <th>Category</th>
         <th>Highest Priced Item</th>
         <th>Total Orders</th>
@@ -35,21 +37,23 @@
     </div>
   </div>
 
-  <div class="dashboard-orders">
-    <p>Orders by State:  </p>
-    <%= form_tag admin_analytics_dashboard_path, method: :get do %>
-      <%= select_tag(:sort, options_for_select(state_sort, params[:sort])) %>
-      <%= submit_tag "Sort" %>
-    <% end %>
-    <table class="order-by-state">
-      <th>State</th>
-      <th>Completed Orders</th>
-      <% @orders_by_state.each_with_index do |(state, count), index| %>
-      <tr>
-        <td class="state<%=index %>"><%= states_helper.key(state) %></td>
-        <td><%= count %></td>
-      </tr>
+  <div class="dashboard-info-box">
+    <div class="dashboard-orders">
+      <p>Orders by State:  </p>
+      <%= form_tag admin_analytics_dashboard_path, method: :get do %>
+        <%= select_tag(:sort, options_for_select(state_sort, params[:sort])) %>
+        <%= submit_tag "Sort" %>
       <% end %>
-    </table>
+      <table class="order-by-state">
+        <th>State</th>
+        <th>Completed Orders</th>
+        <% @orders_by_state.each_with_index do |(state, count), index| %>
+        <tr>
+          <td class="state<%=index %>"><%= states_helper.key(state) %></td>
+          <td><%= count %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
