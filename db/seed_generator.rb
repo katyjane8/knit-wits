@@ -8,7 +8,6 @@ class SeedGenerator
     users.nil? ? @users_count = 30 : @users_count = users.to_i
     orders.nil? ? @orders_count = 1000 : @orders_count = users.to_i
     order_items.nil? ? @order_items_count = 4000 : @order_items_count = users.to_i
-
   end
 
   def users
@@ -65,7 +64,7 @@ class SeedGenerator
   end
 
   def load_retired_items
-    CSV.open("db/seed_data/retired_items.csv", "w") do |csv|
+    CSV.open("data/retired_items.csv", "w") do |csv|
       retired_items.each do |resource|
         csv << resource
       end
@@ -73,7 +72,7 @@ class SeedGenerator
   end
 
   def load_users
-    CSV.open("db/seed_data/users.csv", "w") do |csv|
+    CSV.open("data/users.csv", "w") do |csv|
       users.each do |resource|
         csv << resource
       end
@@ -81,7 +80,7 @@ class SeedGenerator
   end
 
   def load_orders
-    CSV.open("db/seed_data/orders.csv", "w") do |csv|
+    CSV.open("data/orders.csv", "w") do |csv|
       orders.each do |resource|
         csv << resource
       end
@@ -89,7 +88,7 @@ class SeedGenerator
   end
 
   def load_order_items
-    CSV.open("db/seed_data/order_items.csv", "w") do |csv|
+    CSV.open("data/order_items.csv", "w") do |csv|
       order_items.each do |resource|
         csv << resource
       end

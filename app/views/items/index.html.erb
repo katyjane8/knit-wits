@@ -6,13 +6,14 @@
 
 <div class="sort">
   <%= form_tag(items_path, method: :get) do %>
-    <%= select_tag(:sort, options_for_select(sort_methods, params[:sort])) %>
+    <%= select_tag(:sort, options_for_select(item_sort, params[:sort])) %>
+    <%= submit_tag "Sort" %>
   <% end %>
 </div>
 
 <div class="all-items">
-<% @items.each do |item| %>
-  <div class="product-card">
+<% @items.each_with_index do |item, index| %>
+  <div class="product-card" id=<%= index %>>
     <div class="product-card-thumbnail">
       <%= link_to image_tag(asset_path(item.image)), item_path(item)  %>
     </div>

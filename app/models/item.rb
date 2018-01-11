@@ -6,10 +6,11 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_categories
   has_many :order_items
   has_many :orders, through: :order_items
+
   validates_presence_of :title, :status, :description, :price
   validates :price, numericality: { greater_than: 0 }
   validates :title, uniqueness: true
-  after_update :retired_item
+  after_update :retire_item
 
   enum status: [:retired, :active, :out_of_stock]
 
@@ -30,7 +31,7 @@ class Item < ApplicationRecord
   end
 
   def times_retired
-    retired_items.count
+    retired_items.length
   end
 
   def self.categories_with_highest_price
@@ -44,9 +45,15 @@ class Item < ApplicationRecord
     .order('retired_count DESC')
   end
 
+  def self.sort(sort)
+    sort = "title ASC" if sort.nil?
+    all
+    .order(sort)
+  end
+
   private
 
-    def retired_item
+    def retire_item
       if self.status == "retired"
         RetiredItem.create(item: self)
       end
