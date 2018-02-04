@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'jquery'
+gem 'jquery', '~> 0.0.1'
 gem 'will_paginate', '~> 3.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -38,15 +38,15 @@ gem 'mini_magick', '~> 4.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'shoulda-matchers'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
-  gem 'database_cleaner'
-  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
-  gem 'orderly'
+  gem 'byebug', '~> 9.1.0', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'capybara', '~> 2.17.0'
+  gem 'launchy', '~> 2.4.3'
+  gem 'factory_bot_rails', '~> 4.8.2'
+  gem 'rspec-rails', '~> 3.7.2'
+  gem 'database_cleaner', '~> 1.6.2'
+  gem 'faker', '~> 1.8.7', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'orderly', '~> 0.0.3'
 end
 
 group :development do
