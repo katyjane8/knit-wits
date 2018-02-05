@@ -1,6 +1,6 @@
-# README
-
-
+# Knit Wits
+[![CircleCI](https://circleci.com/gh/Maxscores/knit-wits.svg?style=shield)](https://circleci.com/gh/Maxscores/knit-wits)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9714c4be4cfe58d24443/maintainability)](https://codeclimate.com/github/Maxscores/knit-wits/maintainability)
 
 Knit Wits is a Rails application that allows users to browse local Colorado handmade knits, add items to their cart, checkout, and view their orders. It also allows an administrator to view a variety of analytics about their users, items, and orders. It was built by Turing students [Max Stackhouse](https://github.com/Maxscores),  [Katy Welyzcko](https://github.com/katyjane8), and  [Zachary Landes](https://github.com/zacharylandes).
 
